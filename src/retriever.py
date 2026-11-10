@@ -33,7 +33,11 @@ class PaperRetriever:
             query_vector, self.tfidf_matrix
         ).flatten()
 
-        top_indices = scores.argsort()[::-1][:top_k]
+        top_indices = scores.argsort()[::-1]
+        top_indices = [
+            index for index in top_indices
+            if scores[index] > 0
+        ][:top_k]
 
         results = []
 

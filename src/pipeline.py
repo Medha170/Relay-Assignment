@@ -3,10 +3,12 @@ import asyncio
 
 from src.retriever import PaperRetriever
 from src.model_client import GroqModelClient
+import os
+from src.standin import StandInModelClient
 
 
-MIN_RELEVANCE_SCORE = 0.05
-TOP_K = 5
+MIN_RELEVANCE_SCORE = 0.10
+TOP_K = 3
 
 
 class ResearchPipeline:
@@ -37,6 +39,9 @@ Rules:
 - If the passages do not support an answer, say:
   "The provided papers do not contain enough information to answer this question."
 - Be concise but complete.
+- Keep the answer concise: aim for 3-5 sentences.
+- Complete every sentence; do not stop mid-explanation.
+- Do not include details that are not supported by the passages.
 
 Retrieved passages:
 {context}
@@ -68,7 +73,15 @@ Question: {question}
 
 
 async def main():
-    model_client = GroqModelClient()
+    backend = os.getenv("MODEL_BACKEND", "groq").lower()
+
+    if backend == "standin":
+        model_client = StandInModelClient()
+    elif backend == "groq":
+        model_client = GroqModelClient()
+    else:
+        raise ValueError(f"Unknown model backend: {backend}")
+
     pipeline = ResearchPipeline(model_client)
 
     try:
@@ -80,6 +93,7 @@ async def main():
             print(piece, end="", flush=True)
 
         print()
+
     finally:
         await pipeline.close()
 
