@@ -7,7 +7,6 @@ import os
 from src.standin import StandInModelClient
 
 
-MIN_RELEVANCE_SCORE = 0.10
 TOP_K = 3
 
 
@@ -36,12 +35,15 @@ Answer using ONLY the retrieved passages below.
 Rules:
 - Cite every factual claim using [Source N].
 - Never invent facts or citations.
-- If the passages do not support an answer, say:
+- First determine whether the retrieved passages directly contain
+  evidence that answers the question.
+- A passage mentioning similar terminology is not sufficient evidence.
+- Do not use outside knowledge or infer unsupported facts.
+- If the passages do not directly support an answer, respond exactly:
   "The provided papers do not contain enough information to answer this question."
 - Be concise but complete.
-- Keep the answer concise: aim for 3-5 sentences.
+- Aim for 3-5 sentences.
 - Complete every sentence; do not stop mid-explanation.
-- Do not include details that are not supported by the passages.
 
 Retrieved passages:
 {context}
@@ -53,8 +55,8 @@ Question: {question}
         # Step 1: Retrieve relevant passages
         passages = self.retriever.retrieve(question, top_k=TOP_K)
 
-        # Step 2: Check retrieval relevance
-        if not passages or passages[0]["score"] < MIN_RELEVANCE_SCORE:
+        # Step 2: Refuse if no passages were retrieved
+        if not passages:
             yield (
                 "The provided papers do not contain enough information "
                 "to answer this question."

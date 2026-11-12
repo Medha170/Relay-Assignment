@@ -1,0 +1,2 @@
+request_id,scenario,source,start_time,first_token_ms,total_ms,status,retries,tokens_in,tokens_out,retrieval_setting,answer_grade
+1,quality_evaluation,real,2026-11-12T04:56:40.195826+00:00,,937.01,ok,0,944,250,tfidf_top3,

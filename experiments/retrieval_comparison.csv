@@ -1,0 +1,16 @@
+question_id,question,category,expected_paper,tfidf_top3,hybrid_top3,tfidf_hit_at_3,hybrid_hit_at_3
+1,How does scaled dot-product attention work?,attention,attention_is_all_you_need,attention_is_all_you_need;attention_is_all_you_need;attention_is_all_you_need,attention_is_all_you_need;attention_is_all_you_need;attention_is_all_you_need,True,True
+2,Why is the dot product scaled by the square root of the key dimension?,attention,attention_is_all_you_need,attention_is_all_you_need;dynamic_chunking;attention_is_all_you_need,attention_is_all_you_need;attention_is_all_you_need;attention_is_all_you_need,True,True
+3,What is the purpose of multi-head attention?,attention,attention_is_all_you_need,attention_is_all_you_need;attention_is_all_you_need;attention_is_all_you_need,attention_is_all_you_need;attention_is_all_you_need;attention_is_all_you_need,True,True
+4,How does the Transformer encode positional information?,attention,attention_is_all_you_need,attention_is_all_you_need;moshi;moshi,attention_is_all_you_need;attention_is_all_you_need;moshi,True,True
+5,What role does the Mimi audio codec play in Moshi?,moshi,moshi,moshi;moshi;moshi,moshi;moshi;moshi,True,True
+6,How does Moshi support full-duplex dialogue?,moshi,moshi,moshi;moshi;moshi,moshi;moshi;moshi,True,True
+7,"What is Inner Monologue, and why is it useful?",moshi,moshi,moshi;moshi;moshi,moshi;moshi;moshi,True,True
+8,How does Moshi generate speech in real time?,moshi,moshi,moshi;moshi;moshi,moshi;moshi;moshi,True,True
+9,What problem is dynamic chunking intended to address?,dynamic_chunking,dynamic_chunking,dynamic_chunking;dynamic_chunking;dynamic_chunking,dynamic_chunking;dynamic_chunking;dynamic_chunking,True,True
+10,How does dynamic chunking differ from fixed-size chunking?,dynamic_chunking,dynamic_chunking,dynamic_chunking;dynamic_chunking;dynamic_chunking,dynamic_chunking;dynamic_chunking;dynamic_chunking,True,True
+11,What is hierarchical sequence modeling?,dynamic_chunking,dynamic_chunking,dynamic_chunking;dynamic_chunking;attention_is_all_you_need,dynamic_chunking;dynamic_chunking;dynamic_chunking,True,True
+12,What evidence does the paper provide for its approach?,dynamic_chunking,dynamic_chunking,dynamic_chunking;moshi;dynamic_chunking,dynamic_chunking;dynamic_chunking;dynamic_chunking,True,True
+13,What is the capital of France?,out_of_scope,,moshi,moshi;dynamic_chunking;dynamic_chunking,,
+14,Who won the 2024 Olympic men's 100m final?,out_of_scope,,moshi;moshi;moshi,dynamic_chunking;dynamic_chunking;moshi,,
+15,What is the current population of Bengaluru?,out_of_scope,,dynamic_chunking;dynamic_chunking;dynamic_chunking,moshi;moshi;moshi,,
